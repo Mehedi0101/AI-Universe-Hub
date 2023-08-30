@@ -29,7 +29,7 @@ const displayContent = async(isDefault) => {
                                     <p>${item.published_in}</p>
                                 </div>
                             </div>
-                            <button class="active:scale-90" onclick="showDescription.showModal()"><img src="assets/icons/button-icon.svg" alt=""></button>
+                            <button class="active:scale-90" onclick="modalContent('${item.id}'); showDescription.showModal()"><img src="assets/icons/button-icon.svg" alt=""></button>
                         </div>
                 </div>
             `;
