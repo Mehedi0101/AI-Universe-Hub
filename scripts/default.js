@@ -1,10 +1,12 @@
 const cardContainer = document.getElementById('card-container');
 
-const DisplayContent = async(isDefault) => {
+const displayContent = async(isDefault) => {
         const response = await fetch('https://openapi.programming-hero.com/api/ai/tools');
         let data = await response.json();
-        data =  isDefault ? data.data.tools.slice(0,6) : data.data.tools;
-        data[5].image='./assets/images/jasper.jpg';
+        data =  isDefault ? data.data.tools.slice(0,6) : data.data.tools.slice(6);
+        if(isDefault){
+            data[5].image='./assets/images/jasper.jpg';
+        }
         data.forEach(item => {
             const div = document.createElement('div');
             div.classList = `card bg-base-100 shadow-xl`;
@@ -19,7 +21,7 @@ const DisplayContent = async(isDefault) => {
                             <li>${item.features[2]}</li>
                         </ol>
                         <hr class="my-4">
-                        <div class="flex justify-between">
+                        <div class="flex justify-between items-center">
                             <div>
                                 <h2 class="card-title">${item.name}</h2>
                                 <div class="flex gap-2 text-[#585858]">
@@ -27,7 +29,7 @@ const DisplayContent = async(isDefault) => {
                                     <p>${item.published_in}</p>
                                 </div>
                             </div>
-                            <button class="active:scale-90"><img src="assets/icons/button-icon.svg" alt=""></button>
+                            <button class="active:scale-90" onclick="showDescription.showModal()"><img src="assets/icons/button-icon.svg" alt=""></button>
                         </div>
                 </div>
             `;
@@ -36,4 +38,4 @@ const DisplayContent = async(isDefault) => {
         });
 }
 
-DisplayContent(true);
+displayContent(true);
